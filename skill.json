@@ -1,0 +1,42 @@
+{
+  "name": "genpark-enterprise-data-lineage-impact-graph-analyzer-skill",
+  "version": "1.0.0",
+  "description": "Enterprise Data Lineage & Schema Change Blast-Radius Impact Analyzer. Constructs column- and table-level Directed Acyclic Graphs (DAGs) across Tencent Cloud Data Warehouses, Tencent Docs spreadsheets, and BI executive dashboards, performs upstream provenance and downstream blast-radius traversal, and renders Mermaid lineage diagrams.",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.llinkedin.com/company/92955550",
+  "tools": [
+    {
+      "name": "analyze_enterprise_data_lineage",
+      "description": "Register data pipeline edges, trace upstream data provenance, compute downstream schema change blast radius, and render Mermaid lineage diagrams.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "register_lineage_edges",
+              "analyze_downstream_impact",
+              "trace_upstream_provenance",
+              "render_mermaid_lineage"
+            ],
+            "description": "Data lineage analysis action."
+          },
+          "edges": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "List of lineage edges [source, target, transformation_type, criticality]."
+          },
+          "target_node": {
+            "type": "string",
+            "description": "Node ID to inspect for impact or provenance."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
